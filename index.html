@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Основной контейнер для контента -->
+    <main id="content-area">
+        
+        <!-- Вкладка: Голосование -->
+        <section id="tab-voting" class="tab-content active">
+            <div id="voting-container" class="voting-container">
+                
+            </div>
+            <div class="vote-card favorite-track-card">
+                <div class="vote-card-title">
+                  Выберите трек, который Вам понравился больше всего:
+                </div>
+              
+                <select id="favoriteTrackSelect" class="favorite-track-select">
+                  <!-- опции будут добавляться через JS -->
+                </select>
+            </div>
+            <button id="submit-votes" class="submit-btn">Отправить</button>
+        </section>
+
+        <!-- Вкладка: Треки -->
+        <section id="tab-tracks" class="tab-content">
+            <div class="list-container" id="tracks-list"></div>
+        </section>
+
+        <!-- Вкладка: Клипы -->
+        <section id="tab-clips" class="tab-content">
+            <div class="list-container" id="clips-list"></div>
+        </section>
+        
+    </main>
+
+    <!-- Скрытый аудиоплеер -->
+    <audio id="audio-player"></audio>
+
+    <!-- УНИВЕРСАЛЬНЫЙ ПЛЕЕР (Мини / Полный экран) -->
+    <div id="mini-player" class="mini-player">
+        <!-- Кнопка закрытия/сворачивания (видна только на полном экране) -->
+        <button id="player-close" class="player-close-btn">&times;</button>
+
+        <div class="extra-info">
+            <div id="player-country" class="player-country"></div>
+            <div id="player-person" class="player-person"></div>
+        </div>
+
+        <img id="mini-player-cover" src="" alt="Обложка" class="mini-cover">
+        
+        <div class="mini-info">
+            <div id="mini-player-title" class="mini-title">Название</div>
+            <div id="mini-player-author" class="mini-author">Исполнитель</div>
+        </div>
+
+        <!-- Блок дорожки времени (виден только на полном экране) -->
+        <div class="player-controls-expanded">
+            <div class="time-slider-container">
+                <span id="time-current">0:00</span>
+                <input type="range" id="player-slider" min="0" max="100" value="0">
+                <span id="time-duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="mini-controls">
+            <button id="prev-btn" class="mini-play-btn">⏮</button>
+            <button id="mini-player-toggle" class="mini-play-btn">▶</button>
+            <button id="next-btn" class="mini-play-btn">⏭</button>
+        </div>
+
+        <canvas id="visualizer"></canvas>
+    </div>
+
+    <!-- Модальное окно для просмотра клипов -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <video id="video-player" controls></video>
+        </div>
+    </div>
+
+    <!-- Нижний тулбар -->
+    <nav class="toolbar">
+        <button class="nav-btn active" data-tab="tab-voting">
+            <span class="icon">📝</span>
+            <span class="label">Голосование</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-tracks">
+            <span class="icon">🎵</span>
+            <span class="label">Треки</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-clips">
+            <span class="icon">🎬</span>
+            <span class="label">Клипы</span>
+        </button>
+    </nav>
+
+    <script src="script.js"></script>
+    <script src="data.js"></script>
+</body>
+</html>
