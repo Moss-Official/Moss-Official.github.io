@@ -499,6 +499,7 @@ body {
     object-fit: cover;
     margin: 0 10px;
     align-self: center;
+    border-radius: 3px;
 }
 
 .extra-info {
@@ -527,6 +528,8 @@ body {
     object-fit: cover;
     margin-right: 8px;
     vertical-align: middle;
+
+    border-radius: 3px;
 }
 
 .vote-title {
@@ -538,6 +541,8 @@ body {
 .vote-flag {
     height: 14px;
     object-fit: cover;
+
+    border-radius: 3px;
 }
 
 .vote-footer {
@@ -745,5 +750,5 @@ body {
   /* чтобы контент не прятался под шапкой */
   body {
     padding-top: 60px;
-    padding-bottom: 140px;
+    padding-bottom: 150px;
   }
