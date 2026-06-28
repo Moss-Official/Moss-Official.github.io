@@ -508,7 +508,7 @@
             document.getElementById("toolbar-tracks").src = "Media/UI/tracks.png";
             document.getElementById("toolbar-clips").src = "Media/UI/clips_chosen.png";
 
-            const container = document.getElementById('clips-list');
+            /*const container = document.getElementById('clips-list');
             container.innerHTML = 'Загрузка клипов...';
 
             try {
@@ -539,7 +539,65 @@
             } catch (error) {
                 container.innerHTML = 'Ошибка загрузки клипов.';
                 console.error(error);
-            }
+            }*/
+
+            const container = document.getElementById("clips-container");
+            container.innerHTML = "";
+
+            getClips().forEach(clip => {
+                const card = document.createElement("div");
+                card.className = "clip-card";
+        
+                const preview = document.createElement("img");
+                preview.className = "clip-preview";
+        
+                // если нет preview — можно поставить заглушку
+                preview.src = clip.preview_dir || "Media/default_preview.png";
+        
+                const info = document.createElement("div");
+                info.className = "clip-info";
+        
+                const title = document.createElement("div");
+                title.className = "clip-title";
+                title.textContent = clip.clip_name;
+        
+                const author = document.createElement("div");
+                author.className = "clip-author";
+                author.textContent = clip.author;
+        
+                info.appendChild(title);
+                info.appendChild(author);
+        
+                card.appendChild(preview);
+                card.appendChild(info);
+        
+                // ▶️ клик — открыть видео
+                card.addEventListener("click", () => {
+                    openClipPlayer(clip.clip_dir);
+                });
+        
+                container.appendChild(card);
+            });
+        }
+
+        function openClipPlayer(src) {
+            const modal = document.createElement("div");
+            modal.className = "video-modal";
+        
+            modal.innerHTML = `
+                <div class="video-content">
+                    <span class="close-video">&times;</span>
+                    <video controls autoplay>
+                        <source src="${src}" type="video/mp4">
+                    </video>
+                </div>
+            `;
+        
+            document.body.appendChild(modal);
+        
+            modal.querySelector(".close-video").onclick = () => {
+                modal.remove();
+            };
         }
         
         function stopVideo() {
